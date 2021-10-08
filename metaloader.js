@@ -21,6 +21,7 @@
 /**
  * Metaloader - ES6 function to easily get organized all metatags for your static website.
  *
+ * @namespace Metaloader
  * @async
  * @param {Object} data - Object with jsonSource URL or with accepted keys: charset, title, description, keywords, robots, author, creator, canonical, locale, type, image, url, site_name, viewport.
  * @param {String|false} eventListener - Window event to be awaited. If falsy or by default, meta will be appended immediately.
@@ -67,6 +68,8 @@ export default async (data, eventListener = false, newline = false) => {
    * Fetch data.jsonSource and loads into function.
    * @async
    * @returns {Promise}
+   * @memberof Metaloader
+   * @private
    */
   async function loadJson() {
     return new Promise((resolve, reject) => {
@@ -85,6 +88,8 @@ export default async (data, eventListener = false, newline = false) => {
 
   /**
    * Builds bundled html to be appended just-in-time or handled to a specific function defined in eventListener.
+   * @memberof Metaloader
+   * @private
    */
   function buildData() {
     let $html = "";
@@ -109,6 +114,8 @@ export default async (data, eventListener = false, newline = false) => {
    * @param {String} key 
    * @param {String} data 
    * @returns {(String|'')} The parsed HTML or an empty string.
+   * @memberof Metaloader
+   * @private
    */
   function parseData(key, data) {
     for (const prop of obj.ValidProps) {
@@ -145,7 +152,9 @@ export default async (data, eventListener = false, newline = false) => {
 
   /**
    * Embeds title and charset elements, if needed, and appends the full previously generated metatags.
-   * @param {*} html 
+   * @param {String} html 
+   * @memberof Metaloader
+   * @private
    */
   function appendMeta(html) {
     const $ = el => document.querySelector(el);
@@ -169,6 +178,8 @@ export default async (data, eventListener = false, newline = false) => {
   /**
    * Returns "\n" is newline is true.
    * @returns {(String|'')}
+   * @memberof Metaloader
+   * @private
    */
   function _newline() {
     if (obj.newline) {
