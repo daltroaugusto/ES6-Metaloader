@@ -130,7 +130,7 @@ export default async (data, eventListener = false, newline = false) => {
         if (prop[1].indexOf(":")) {
           switch (prop[1].split(":")[0]) {
             case "link":
-              return `<link rel="${key}" href="${data} />"${_newline()}`;
+              return `<link rel="${key}" href="${data}" />${_newline()}`;
           }
         }
 
